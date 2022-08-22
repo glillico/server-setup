@@ -34,6 +34,7 @@ See the individual roles for variable descriptions.
 - [ansible-role-configure_sudo](https://github.com/glillico/ansible-role-configure_sudo)<br>
 - [ansible-role-setup_ssh_keys](https://github.com/glillico/ansible-role-setup_ssh_keys)<br>
 - [ansible-role-copy_etc_issue](https://github.com/glillico/ansible-role-copy_etc_issue)
+- [ansible-role-install_docker(https://github.com/glillico/ansible-role-install_docker)<br>
 
 ## License
 
