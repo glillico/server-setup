@@ -1,4 +1,6 @@
 ---
+configure_docker: true
+
 # configure_firewall role variables.
     firewall_ufw:
       - firewall_ufw_rule: 'limit'

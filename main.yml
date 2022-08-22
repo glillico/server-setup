@@ -42,4 +42,10 @@
       tags: ['issue']
 
     - role: glillico.reboot_server
+
+    - role: glillico.install_docker
+      when: configure_docker
+      tags: ['docker']
+
+    - role: glillico.reboot_server
       tags: ['reboot']
