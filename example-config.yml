@@ -1,44 +1,45 @@
 ---
+# Set to 'true' to install docker-ce.
 configure_docker: true
 
 # configure_firewall role variables.
-    firewall_ufw:
-      - firewall_ufw_rule: 'limit'
-        firewall_ufw_direction: 'in'
-        firewall_ufw_interface: 'eth0'
-        firewall_ufw_from_ip: '192.168.1.0/24'
-        firewall_ufw_to_port: '22'
-        firewall_ufw_proto: 'tcp'
-        firewall_ufw_comment: 'Allow SSH conenctions from local network'
+firewall_ufw:
+  - firewall_ufw_rule: 'limit'
+    firewall_ufw_direction: 'in'
+    firewall_ufw_interface: 'eth0'
+    firewall_ufw_from_ip: '192.168.1.0/24'
+    firewall_ufw_to_port: '22'
+    firewall_ufw_proto: 'tcp'
+    firewall_ufw_comment: 'Allow SSH conenctions from local network'
 
 # set_hostname role variables.
-    mac_address_mapping:
-      "01:02:03:04:05:06":
-        name: 'testserver.domain'
+mac_address_mapping:
+  "01:02:03:04:05:06":
+    name: 'testserver.domain'
 
 # setup_users role variables.
-    suu_groups:
-      - suu_groups_name: ssh-allowed
-        suu_groups_gid: 500
-        suu_groups_state: present
-    users:
-      - setup_users_name: testuser
-        setup_users_shell: /bin/bash
-        setup_users_groups: ssh-allowed
-        setup_users_state: present
+suu_groups:
+  - suu_groups_name: ssh-allowed
+    suu_groups_gid: 500
+    suu_groups_state: present
+users:
+  - setup_users_name: testuser
+    setup_users_shell: /bin/bash
+    setup_users_groups: ssh-allowed
+    setup_users_state: present
 
 # configure_sudo role variables.
-    configure_sudo_users:
-      - configure_sudo_users_name: testuser
-        configure_sudo_users_hosts: ALL
-        configure_sudo_users_operator: ALL
-        configure_sudo_users_option: 'NOPASSWD:'
-        configure_sudo_users_command: ALL
-        configure_sudo_users_state: present
+configure_sudo_users:
+  - configure_sudo_users_name: testuser
+    configure_sudo_users_hosts: ALL
+    configure_sudo_users_operator: ALL
+    configure_sudo_users_option: 'NOPASSWD:'
+    configure_sudo_users_command: ALL
+    configure_sudo_users_state: present
 
 # configure_sshd role variables.
-    ssk_keys:
-      - ssk_user: testuser
-        ssk_state: present
-        ssk_keyfile: keys/id_rsa.pub
-    configure_sshd_allowgroups_user: testuser
+ssk_keys:
+  - ssk_user: testuser
+    ssk_state: present
+    ssk_keyfile: keys/id_rsa.pub
+configure_sshd_allowgroups_user: testuser
