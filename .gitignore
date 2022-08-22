@@ -1,0 +1,8 @@
+*.DS_Store
+.DS_Store?
+*.retry
+roles/*
+keys/*
+!keys/.gitkeep
+config.yml
+inventory.ini
