@@ -1,0 +1,14 @@
+---
+roles:
+  - name: glillico.configure_firewall
+  - name: glillico.set_hostname
+  - name: glillico.update_pkgs
+  - name: glillico.reboot_server
+  - name: glillico.configure_ntp
+  - name: glillico.configure_sshd
+  - name: glillico.install_fail2ban
+  - name: glillico.auto_pkg_updates
+  - name: glillico.setup_users
+  - name: glillico.configure_sudo
+  - name: glillico.setup_ssh_keys
+  - name: glillico.copy_etc_issue

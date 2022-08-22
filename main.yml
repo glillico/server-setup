@@ -1,0 +1,45 @@
+---
+- hosts: all
+  become: true
+
+  vars_files:
+    - config.yml
+
+  roles:
+    - role: glillico.configure_firewall
+      tags: ['firewall']
+
+    - role: glillico.set_hostname
+      tags: ['hostname']
+
+    - role: glillico.update_pkgs
+      tags: ['update_pkgs']
+
+    - role: glillico.reboot_server
+
+    - role: glillico.configure_ntp
+      tags: ['ntp']
+
+    - role: glillico.install_fail2ban
+      tags: ['fail2ban']
+
+    - role: glillico.auto_pkg_updates
+      tags: ['auto_pkg_updates']
+
+    - role: glillico.setup_users
+      tags: ['users']
+
+    - role: glillico.configure_sudo
+      tags: ['sudo']
+
+    - role: glillico.setup_ssh_keys
+      tags: ['ssh_keys']
+
+    - role: glillico.configure_sshd
+      tags: ['sshd']
+
+    - role: glillico.copy_etc_issue
+      tags: ['issue']
+
+    - role: glillico.reboot_server
+      tags: ['reboot']
