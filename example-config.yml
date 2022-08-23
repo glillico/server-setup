@@ -1,6 +1,19 @@
 ---
-# Set to 'true' to install docker-ce.
-configure_docker: true
+# Set the blow to true to run the relavent section of the playbook
+auto_pkg_updates: true
+configure_firewall: true
+configure_ntp: true
+configure_sshd: true
+configure_sudo: true
+copy_etc_issue: true
+install_docker: false
+install_fail2ban: true
+reboot_server_after_updates: true
+reboot_server_final: true
+set_hostname: true
+setup_ssh_keys: true
+setup_users: true
+update_pkgs: true
 
 # configure_firewall role variables.
 firewall_ufw:
@@ -43,3 +56,7 @@ ssk_keys:
     ssk_state: present
     ssk_keyfile: keys/id_rsa.pub
 configure_sshd_allowgroups_user: testuser
+
+# install_docker role variables
+idk_docker_group_users:
+  - vagrant

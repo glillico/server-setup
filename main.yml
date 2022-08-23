@@ -7,45 +7,56 @@
 
   roles:
     - role: glillico.configure_firewall
+      when: configure_firewall
       tags: ['firewall']
 
     - role: glillico.set_hostname
+      when: set_hostname
       tags: ['hostname']
 
     - role: glillico.update_pkgs
+      when: update_pkgs
       tags: ['update_pkgs']
 
     - role: glillico.reboot_server
-
-    - role: glillico.configure_ntp
-      tags: ['ntp']
-
-    - role: glillico.install_fail2ban
-      tags: ['fail2ban']
-
-    - role: glillico.auto_pkg_updates
-      tags: ['auto_pkg_updates']
+      when: reboot_server_after_updates
 
     - role: glillico.setup_users
+      when: setup_users
       tags: ['users']
 
-    - role: glillico.configure_sudo
-      tags: ['sudo']
-
     - role: glillico.setup_ssh_keys
+      when: setup_ssh_keys
       tags: ['ssh_keys']
 
     - role: glillico.configure_sshd
+      when: configure_sshd
       tags: ['sshd']
 
     - role: glillico.copy_etc_issue
+      when: copy_etc_issue
       tags: ['issue']
 
-    - role: glillico.reboot_server
+    - role: glillico.configure_ntp
+      when: configure_ntp
+      tags: ['ntp']
+
+    - role: glillico.install_fail2ban
+      when: install_fail2ban
+      tags: ['fail2ban']
+
+    - role: glillico.auto_pkg_updates
+      when: auto_pkg_updates
+      tags: ['auto_pkg_updates']
+
+    - role: glillico.configure_sudo
+      when: configure_sudo
+      tags: ['sudo']
 
     - role: glillico.install_docker
-      when: configure_docker
+      when: install_docker
       tags: ['docker']
 
     - role: glillico.reboot_server
+      when: reboot_server_final
       tags: ['reboot']
