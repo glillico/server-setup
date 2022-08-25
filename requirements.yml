@@ -1,15 +1,19 @@
 ---
 roles:
+  - name: glillico.add_rm_pkgs
+  - name: glillico.auto_pkg_updates
   - name: glillico.configure_firewall
-  - name: glillico.set_hostname
-  - name: glillico.update_pkgs
-  - name: glillico.reboot_server
   - name: glillico.configure_ntp
   - name: glillico.configure_sshd
-  - name: glillico.install_fail2ban
-  - name: glillico.install_docker
-  - name: glillico.auto_pkg_updates
-  - name: glillico.setup_users
   - name: glillico.configure_sudo
-  - name: glillico.setup_ssh_keys
   - name: glillico.copy_etc_issue
+  - name: glillico.install_docker
+  - name: glillico.install_fail2ban
+  - name: glillico.manage_selinux
+  - name: glillico.reboot_server
+  - name: glillico.regenerate_ssh_host_keys
+  - name: glillico.set_hostname
+  - name: glillico.setup_ssh_keys
+  - name: glillico.setup_users
+  - name: glillico.sync_sudo
+  - name: glillico.update_pkgs
