@@ -51,11 +51,27 @@
 
     - role: glillico.configure_sudo
       when: configure_sudo
-      tags: ['sudo']
+      tags: ['configure_sudo']
+
+    - role: glillico.sync_sudo
+      when: sync_sudo
+      tags: ['sync_sudo']
+
+    - role: glillico.add_rm_pkgs
+      when: add_rm_pkgs
+      tags: ['add_rm_pkgs']
 
     - role: glillico.install_docker
       when: install_docker
       tags: ['docker']
+
+    - role: glillico.manage_selinux
+      when: manage_selinux
+      tags: ['selinux']
+
+    - role: glillico.regenerate_ssh_host_keys
+      when: regenerate_ssh_host_keys
+      tags: ['host_keys']
 
     - role: glillico.reboot_server
       when: reboot_server_final
