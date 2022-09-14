@@ -1,5 +1,5 @@
 ---
-# Set the blow to true to run the relavent section of the playbook
+# Set to true to run the relavent section of the playbook
 add_rm_pkgs: true
 auto_pkg_updates: true
 configure_firewall: true
@@ -16,7 +16,7 @@ regenerate_ssh_host_keys: true
 set_hostname: true
 setup_ssh_keys: true
 setup_users: true
-sync_sudo: true
+sync_sudo: false
 update_pkgs: true
 
 # configure_firewall role variables.
