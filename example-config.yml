@@ -1,5 +1,5 @@
 ---
-# Set to true to run the relavent section of the playbook
+# Set to true to run the relavent section of the playbook.
 add_rm_pkgs: true
 auto_pkg_updates: true
 configure_firewall: true
@@ -7,9 +7,9 @@ configure_ntp: true
 configure_sshd: true
 configure_sudo: true
 copy_etc_issue: true
-install_docker: true
+install_docker: false
 install_fail2ban: true
-manage_selinux: true
+manage_selinux: false
 reboot_server_after_updates: true
 reboot_server_final: true
 regenerate_ssh_host_keys: true
@@ -19,20 +19,40 @@ setup_users: true
 sync_sudo: false
 update_pkgs: true
 
+# add_rm_pkgs role variables.
+irp_pkg_list:
+  - irp_pkg_name: zsh
+    irp_pkg_state: present
+
 # configure_firewall role variables.
 firewall_ufw:
   - firewall_ufw_rule: 'limit'
     firewall_ufw_direction: 'in'
-    firewall_ufw_interface: 'eth0'
-    firewall_ufw_from_ip: '192.168.1.0/24'
+    firewall_ufw_interface: 'enp0s3'
+    firewall_ufw_from_ip: '10.0.2.0/24'
     firewall_ufw_to_port: '22'
     firewall_ufw_proto: 'tcp'
     firewall_ufw_comment: 'Allow SSH conenctions from local network'
+  - firewall_ufw_rule: 'limit'
+    firewall_ufw_direction: 'in'
+    firewall_ufw_interface: 'enp0s8'
+    firewall_ufw_from_ip: '192.168.60.0/24'
+    firewall_ufw_to_port: '22'
+    firewall_ufw_proto: 'tcp'
+    firewall_ufw_comment: 'Allow SSH conenctions from local network'
+firewall_firewalld:
+  - firewall_firewalld_state: 'enabled'
+    firewall_firewalld_port: '22/tcp'
+    firewall_firewalld_zone: ''
 
 # set_hostname role variables.
 mac_address_mapping:
-  "01:02:03:04:05:06":
-    name: 'testserver.domain'
+  "08:00:27:da:d5:90":
+    name: 'centos7.testdomain'
+  "08:00:27:7b:a7:49":
+    name: 'rocky8.testdomain'
+  "08:00:27:13:9d:30":
+    name: 'debian11.testdomain'
 
 # setup_users role variables.
 suu_groups:
@@ -41,7 +61,7 @@ suu_groups:
     suu_groups_state: present
 users:
   - setup_users_name: testuser
-    setup_users_shell: /bin/bash
+    setup_users_shell: /bin/zsh
     setup_users_groups: ssh-allowed
     setup_users_state: present
 
@@ -58,9 +78,14 @@ configure_sudo_users:
 ssk_keys:
   - ssk_user: testuser
     ssk_state: present
-    ssk_keyfile: keys/id_rsa.pub
+    ssk_keyfile: keys/testuser.pub
 configure_sshd_allowgroups_user: testuser
 
-# install_docker role variables
+# install_docker role variables.
 idk_docker_group_users:
-  - vagrant
+  - testuser
+
+# manage_selinux role variables.
+mse_policy: targeted
+mse_state: permissive
+mse_kernel_param: true
