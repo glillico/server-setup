@@ -76,3 +76,12 @@
     - role: glillico.reboot_server
       when: reboot_server_final
       tags: ['reboot']
+
+  tasks:
+    - name: Flush handlers
+      meta: flush_handlers
+
+    - name: BUILD COMPLETE
+      ansible.builtin.debug:
+        msg: 'NOTE: sshd hostkeys have been changed.'
+      when: regenerate_ssh_host_keys
