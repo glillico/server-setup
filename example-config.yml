@@ -1,28 +1,27 @@
 ---
 # Set to true to run the relavent section of the playbook.
-add_rm_pkgs: true
-auto_pkg_updates: true
-configure_firewall: true
-configure_ntp: true
-configure_sshd: true
-configure_sudo: true
-copy_etc_issue: true
-install_docker: false
-install_fail2ban: true
-manage_selinux: false
-reboot_server_after_updates: true
-reboot_server_final: true
-regenerate_ssh_host_keys: true
-set_hostname: true
-setup_ssh_keys: true
-setup_users: true
-sync_sudo: false
-update_pkgs: true
 
-# add_rm_pkgs role variables.
-irp_pkg_list:
-  - irp_pkg_name: zsh
-    irp_pkg_state: present
+configure_firewall: true
+set_hostname: true
+update_pkgs: true
+reboot_server_after_updates: true
+
+setup_users: true
+setup_ssh_keys: true
+configure_sshd: true
+copy_etc_issue: true
+configure_ntp: true
+install_fail2ban: true
+auto_pkg_updates: true
+configure_sudo: true
+sync_sudo: false
+add_rm_pkgs: true
+manage_selinux: false
+regenerate_ssh_host_keys: true
+reboot_server_after_build: true
+
+install_docker: false
+reboot_server_final: true
 
 # configure_firewall role variables.
 firewall_ufw:
@@ -53,6 +52,8 @@ mac_address_mapping:
     name: 'rocky8.testdomain'
   "08:00:27:13:9d:30":
     name: 'debian11.testdomain'
+  "08:00:27:62:67:d4":
+    name: 'ubuntu2004.testdomain'
 
 # setup_users role variables.
 suu_groups:
@@ -60,10 +61,20 @@ suu_groups:
     suu_groups_gid: 500
     suu_groups_state: present
 users:
+  - setup_users_name: vagrant
+    setup_users_groups: ssh-allowed
+    setup_users_state: present
   - setup_users_name: testuser
     setup_users_shell: /bin/zsh
     setup_users_groups: ssh-allowed
     setup_users_state: present
+
+# configure_sshd role variables.
+ssk_keys:
+  - ssk_user: testuser
+    ssk_state: present
+    ssk_keyfile: keys/testuser.pub
+configure_sshd_allowgroups_user: testuser
 
 # configure_sudo role variables.
 configure_sudo_users:
@@ -74,18 +85,16 @@ configure_sudo_users:
     configure_sudo_users_command: ALL
     configure_sudo_users_state: present
 
-# configure_sshd role variables.
-ssk_keys:
-  - ssk_user: testuser
-    ssk_state: present
-    ssk_keyfile: keys/testuser.pub
-configure_sshd_allowgroups_user: testuser
-
-# install_docker role variables.
-idk_docker_group_users:
-  - testuser
+# add_rm_pkgs role variables.
+irp_pkg_list:
+  - irp_pkg_name: zsh
+    irp_pkg_state: present
 
 # manage_selinux role variables.
 mse_policy: targeted
 mse_state: permissive
 mse_kernel_param: true
+
+# install_docker role variables.
+idk_docker_group_users:
+  - testuser
