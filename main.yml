@@ -16,17 +16,13 @@
       when: set_hostname
       tags: ['hostname']
 
-    - import_role:
-        name: glillico.update_pkgs
-      when: update_pkgs
-      tags: ['update_pkgs']
-
     - name: Flush handlers
       meta: flush_handlers
 
     - import_role:
-        name: glillico.reboot_server
-      when: reboot_server_after_updates
+        name: glillico.update_pkgs
+      when: update_pkgs
+      tags: ['update_pkgs']
 
     - import_role:
         name: glillico.setup_users
