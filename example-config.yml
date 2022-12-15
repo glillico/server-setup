@@ -1,10 +1,9 @@
 ---
-# Set to true to run the relavent section of the playbook.
+# Set to true to run the relavent section of the playbook
 
 configure_firewall: true
 set_hostname: true
 update_pkgs: true
-reboot_server_after_updates: true
 
 setup_users: true
 setup_ssh_keys: true
@@ -22,6 +21,9 @@ reboot_server_after_build: true
 
 install_docker: false
 reboot_server_final: true
+
+# update_pkgs role variables.
+upk_server_reboot: true
 
 # configure_firewall role variables.
 firewall_ufw:
